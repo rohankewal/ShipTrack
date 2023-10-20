@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-	Button,
-	Container,
-	Form,
-	Modal,
-	Nav,
-	NavDropdown,
-	Navbar,
-} from "react-bootstrap";
+import { Button, Container, Form, Modal, Nav, Navbar } from "react-bootstrap";
 import "./Header.css";
 
 function Header(props) {
