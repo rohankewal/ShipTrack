@@ -35,7 +35,6 @@ const Dashboard: React.FC = () => {
 								style={{ height: "400px", width: "100%" }}
 							>
 								<TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-								{/* Example Marker for an active shipment, add more markers as needed */}
 								<Marker position={[51.505, -0.09]}>
 									<Popup>Active Shipment #123</Popup>
 								</Marker>
@@ -50,12 +49,11 @@ const Dashboard: React.FC = () => {
 					<Card>
 						<Card.Header>Watchlist of Shipments</Card.Header>
 						<Card.Body>
-							{/* TODO: turn this into a table for better UI */}
 							<Table striped bordered hover variant="light">
 								<thead>
 									<tr>
 										<th>Shipment ID</th>
-										<th>Route</th>
+										<th>Tracking #</th>
 										<th>ETA</th>
 										<th>Status</th>
 									</tr>
@@ -67,7 +65,6 @@ const Dashboard: React.FC = () => {
 
 				<Col md={6} style={{ height: "400px" }}>
 					{" "}
-					{/* or whatever height you want */}
 					<Card style={{ height: "100%" }}>
 						<Card.Header>Total Shipments by Mode of Transportation</Card.Header>
 						<Card.Body style={{ display: "flex", flexDirection: "column" }}>
