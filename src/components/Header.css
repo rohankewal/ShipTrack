@@ -1,0 +1,23 @@
+/* Some basic styling. You can adjust these based on your preferences. */
+.navbar {
+	font-size: 1.1rem;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .nav-link {
+	color: rgba(255, 255, 255, 0.8);
+	transition: color 0.2s ease;
+}
+
+.navbar-dark .nav-link:hover,
+.navbar-dark .navbar-brand:hover {
+	color: #fff;
+}
+
+.navbar-dark .nav-link.dropdown-toggle:after {
+	transition: transform 0.2s ease;
+}
+
+.navbar-dark .nav-link.dropdown-toggle.show:after {
+	transform: rotate(180deg);
+}
