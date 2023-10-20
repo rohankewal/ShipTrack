@@ -24,19 +24,8 @@ function Header(props) {
 						<Nav.Link href="/">Home</Nav.Link>
 						<Nav.Link href="#features">Features</Nav.Link>
 						<Nav.Link href="#pricing">Pricing</Nav.Link>
-						<NavDropdown title="Actions" id="collapsible-nav-dropdown">
-							<NavDropdown.Item href="#action/3.1">
-								Add Shipment
-							</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.2">
-								Track Shipment
-							</NavDropdown.Item>
-							<NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-							<NavDropdown.Divider />
-							<NavDropdown.Item href="#action/3.4">
-								Share Order
-							</NavDropdown.Item>
-						</NavDropdown>
+						{/* todo: setup "add shipment" button to add new shipments to dashboard */}
+						<Nav.Link>Add Shipment</Nav.Link>{" "}
 					</Nav>
 					<Nav>
 						<Nav.Link href="#deets">
