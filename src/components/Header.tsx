@@ -1,11 +1,24 @@
 import { useState } from "react";
-import { Button, Container, Form, Modal, Nav, Navbar } from "react-bootstrap";
+import {
+	Badge,
+	Button,
+	Container,
+	Form,
+	Modal,
+	Nav,
+	Navbar,
+} from "react-bootstrap";
 import "./Header.css";
 
 function Header(props) {
 	const [modalShow, setModalShow] = useState(false);
 	const [loginShow, setLoginShow] = useState(false);
 	const [addShow, setAddShow] = useState(false);
+	const [selectedOption, setSelectedOption] = useState("On Time");
+
+	const handleOptionClick = (option: string) => {
+		setSelectedOption(option);
+	};
 
 	return (
 		<Navbar bg="light" variant="light" expand="lg" className="sticky-top">
@@ -152,11 +165,29 @@ function Header(props) {
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
 							<Form.Label>Status</Form.Label>
-							<Form.Select>
-								<option>On Time</option>
-								<option>Delayed</option>
-								<option>Arrived</option>
-							</Form.Select>
+							<div>
+								{["On Time", "Delayed", "Arrived", "Cancelled"].map(
+									(option) => (
+										<Badge
+											key={option}
+											bg={option === selectedOption ? "primary" : "secondary"}
+											onClick={() => handleOptionClick(option)}
+											style={{
+												cursor: "pointer",
+												marginRight: "5px",
+												fontSize: "1rem",
+											}}
+										>
+											{option}
+										</Badge>
+									)
+								)}
+							</div>
+							<Form.Control
+								type="hidden"
+								value={selectedOption}
+								onChange={(e) => setSelectedOption(e.target.value)}
+							/>
 						</Form.Group>
 					</Form>
 				</Modal.Body>
