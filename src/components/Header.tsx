@@ -7,7 +7,7 @@ function Header(props) {
 	const [loginShow, setLoginShow] = useState(false);
 
 	return (
-		<Navbar bg="light" variant="light" expand="lg">
+		<Navbar bg="light" variant="light" expand="lg" className="sticky-top">
 			<Container>
 				<Navbar.Brand href="#home">ShipTrack</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
