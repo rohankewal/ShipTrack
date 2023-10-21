@@ -18,7 +18,9 @@ function Header(props) {
 						<Nav.Link href="#features">Features</Nav.Link>
 						<Nav.Link href="#pricing">Pricing</Nav.Link>
 						{/* todo: fix onClick not opening modal */}
-						<Nav.Link onClick={() => setAddShow(true)}>Add Shipment</Nav.Link>{" "}
+						<Button variant="success" onClick={() => setAddShow(true)}>
+							Add Shipment
+						</Button>{" "}
 					</Nav>
 					<Nav>
 						<Nav.Link href="#deets">
@@ -125,8 +127,8 @@ function Header(props) {
 				size="lg"
 				aria-labelledby="contained-modal-title-vcenter"
 				centered
-				show={loginShow}
-				onHide={() => setLoginShow(false)}
+				show={addShow}
+				onHide={() => setAddShow(false)}
 			>
 				<Modal.Header closeButton>
 					<Modal.Title id="contained-modal-title-vcenter">
@@ -143,10 +145,6 @@ function Header(props) {
 						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 							<Form.Label>Tracking Number</Form.Label>
 							<Form.Control type="text" placeholder="123456789" />
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Shipment ID</Form.Label>
-							<Form.Control type="date" placeholder="123456789" />
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 							<Form.Label>Status</Form.Label>
