@@ -14,7 +14,7 @@ import {
 
 import "./Dashboard.css";
 
-const Dashboard: React.FC = () => {
+function Dashboard(props) {
 	// Sample data for line graph
 	const shipmentData = [
 		{ date: "Jan", air: 4000, sea: 2400, road: 2400 },
@@ -54,10 +54,22 @@ const Dashboard: React.FC = () => {
 									<tr>
 										<th>Shipment ID</th>
 										<th>Tracking #</th>
+										<th>Origin Destination</th>
 										<th>ETA</th>
 										<th>Status</th>
 									</tr>
 								</thead>
+								<tbody>
+									{props.shipments.map((shipment, index) => (
+										<tr key={index}>
+											<td>{shipment.shipmentID}</td>
+											<td>{shipment.trackingNumber}</td>
+											<td>{shipment.originDestination}</td>
+											<td>{shipment.eta}</td>
+											<td>{shipment.status}</td>
+										</tr>
+									))}
+								</tbody>
 							</Table>
 						</Card.Body>
 					</Card>
@@ -112,6 +124,6 @@ const Dashboard: React.FC = () => {
 			</Row>
 		</Container>
 	);
-};
+}
 
 export default Dashboard;

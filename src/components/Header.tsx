@@ -8,132 +8,53 @@ import {
 	Nav,
 	Navbar,
 } from "react-bootstrap";
+import { BiExport, BiImport, BiSolidPlusSquare } from "react-icons/bi";
 import "./Header.css";
 
 function Header(props) {
-	const [modalShow, setModalShow] = useState(false);
-	const [loginShow, setLoginShow] = useState(false);
 	const [addShow, setAddShow] = useState(false);
 	const [selectedOption, setSelectedOption] = useState("On Time");
+	const [shipmentID, setShipmentID] = useState("");
+	const [trackingNumber, setTrackingNumber] = useState("");
+	const [originDestination, setOriginDestination] = useState("");
+	const [eta, setEta] = useState("");
 
 	const handleOptionClick = (option: string) => {
 		setSelectedOption(option);
 	};
 
+	const handleSubmit = () => {
+		const newShipment = {
+			shipmentID: shipmentID,
+			trackingNumber: trackingNumber,
+			originDestination: originDestination,
+			eta: eta,
+			status: selectedOption,
+		};
+		props.onAddShipment(newShipment);
+		setAddShow(false); // Close the modal
+	};
+
 	return (
 		<Navbar bg="light" variant="light" expand="lg" className="sticky-top">
 			<Container>
-				<Navbar.Brand href="#home">ShipTrack</Navbar.Brand>
+				<Navbar.Brand href="/">ShipTrack</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link href="/">Home</Nav.Link>
-						<Nav.Link href="#features">Features</Nav.Link>
-						<Nav.Link href="#pricing">Pricing</Nav.Link>
+						<Button variant="light">
+							<BiImport style={{ fontSize: "1.5rem" }} /> Import
+						</Button>
+						<Button variant="light">
+							<BiExport style={{ fontSize: "1.5rem" }} /> Export
+						</Button>
 						{/* todo: fix onClick not opening modal */}
-						<Button variant="success" onClick={() => setAddShow(true)}>
-							Add Shipment
+						<Button variant="light" onClick={() => setAddShow(true)}>
+							<BiSolidPlusSquare style={{ fontSize: "1.5rem" }} /> Add Shipment
 						</Button>{" "}
-					</Nav>
-					<Nav>
-						<Nav.Link href="#deets">
-							<Button
-								variant="outline-primary"
-								onClick={() => setLoginShow(true)}
-							>
-								Login
-							</Button>
-						</Nav.Link>
-						<Nav.Link eventKey={2} href="#memes">
-							<Button variant="primary" onClick={() => setModalShow(true)}>
-								Sign Up
-							</Button>
-						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
-
-			{/* Signup Modal */}
-			<Modal
-				{...props}
-				size="lg"
-				aria-labelledby="contained-modal-title-vcenter"
-				centered
-				show={modalShow}
-				onHide={() => setModalShow(false)}
-			>
-				<Modal.Header closeButton>
-					<Modal.Title id="contained-modal-title-vcenter">
-						ShipTrack
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<h4>Sign Up</h4>
-					<Form>
-						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Full Name</Form.Label>
-							<Form.Control type="text" placeholder="John Doe" autoFocus />
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Email address</Form.Label>
-							<Form.Control type="email" placeholder="name@example.com" />
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Password</Form.Label>
-							<Form.Control
-								type="password"
-								placeholder="Must be 8-12 characters"
-							/>
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Re-type Password</Form.Label>
-							<Form.Control
-								type="password"
-								placeholder="Confim your password"
-							/>
-						</Form.Group>
-					</Form>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button onClick={props.onHide}>Signup</Button>
-				</Modal.Footer>
-			</Modal>
-
-			{/* Login Modal */}
-			<Modal
-				{...props}
-				size="lg"
-				aria-labelledby="contained-modal-title-vcenter"
-				centered
-				show={loginShow}
-				onHide={() => setLoginShow(false)}
-			>
-				<Modal.Header closeButton>
-					<Modal.Title id="contained-modal-title-vcenter">
-						ShipTrack
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<h4>Login</h4>
-					<Form>
-						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Email address</Form.Label>
-							<Form.Control type="email" placeholder="name@example.com" />
-						</Form.Group>
-						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Password</Form.Label>
-							<Form.Control
-								type="password"
-								placeholder="Must be 8-12 characters"
-							/>
-						</Form.Group>
-					</Form>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button onClick={props.onHide}>Login</Button>
-				</Modal.Footer>
-			</Modal>
-
 			{/* Add Shipment Modal */}
 			<Modal
 				{...props}
@@ -153,15 +74,39 @@ function Header(props) {
 					<Form>
 						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 							<Form.Label>Shipment ID</Form.Label>
-							<Form.Control type="text" placeholder="123456789" />
+							<Form.Control
+								type="text"
+								placeholder="123456789"
+								value={shipmentID}
+								onChange={(e) => setShipmentID(e.target.value)}
+							/>
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
 							<Form.Label>Tracking Number</Form.Label>
-							<Form.Control type="text" placeholder="123456789" />
+							<Form.Control
+								type="text"
+								placeholder="123456789"
+								value={trackingNumber}
+								onChange={(e) => setTrackingNumber(e.target.value)}
+							/>
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-							<Form.Label>Status</Form.Label>
-							<Form.Control type="date" placeholder="123456789" />
+							<Form.Label>Origin Destination</Form.Label>
+							<Form.Control
+								type="text"
+								placeholder="City, Sate"
+								value={originDestination}
+								onChange={(e) => setOriginDestination(e.target.value)}
+							/>
+						</Form.Group>
+						<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+							<Form.Label>ETA</Form.Label>
+							<Form.Control
+								type="date"
+								placeholder="123456789"
+								value={eta}
+								onChange={(e) => setEta(e.target.value)}
+							/>
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="exampleForm.ControlSelect1">
 							<Form.Label>Status</Form.Label>
@@ -192,7 +137,7 @@ function Header(props) {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={props.onHide}>Add Shipment</Button>
+					<Button onClick={handleSubmit}>Add Shipment</Button>
 				</Modal.Footer>
 			</Modal>
 		</Navbar>
