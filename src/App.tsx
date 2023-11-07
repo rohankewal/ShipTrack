@@ -5,17 +5,18 @@ import { useState } from "react";
 import Dashboard from "./components/DashBoard";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { Shipment } from "./types";
 
 function App() {
-	const [shipments, setShipments] = useState([]);
+	const [shipments, setShipments] = useState<Shipment[]>([]);
 
-	const addShipment = (newShipment) => {
-		setShipments((prevShipments) => [...prevShipments, newShipment]);
+	const handleAddShipment = (shipment: Shipment) => {
+		setShipments([...shipments, shipment]);
 	};
 
 	return (
 		<>
-			<Header onAddShipment={addShipment} />
+			<Header onAddShipment={handleAddShipment} />
 			<Dashboard shipments={shipments} />
 			<Footer />
 		</>
