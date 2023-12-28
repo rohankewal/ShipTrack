@@ -8,19 +8,19 @@ import Header from "./components/Header";
 import { Shipment } from "./types";
 
 function App() {
-	const [shipments, setShipments] = useState<Shipment[]>([]);
+  const [shipments, setShipments] = useState<Shipment[]>([]);
 
-	const handleAddShipment = (shipment: Shipment) => {
-		setShipments([...shipments, shipment]);
-	};
+  const handleAddShipment = (shipment: Shipment) => {
+    setShipments([...shipments, shipment]);
+  };
 
-	return (
-		<>
-			<Header onAddShipment={handleAddShipment} />
-			<Dashboard shipments={shipments} />
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <Header onAddShipment={handleAddShipment} />
+      <Dashboard shipments={shipments} />
+      <Footer />
+    </>
+  );
 }
 
 export default App;
